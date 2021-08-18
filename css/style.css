@@ -1,0 +1,256 @@
+body{
+    font-family: "微軟正黑體", sans-serif;
+    overflow-x: hidden;
+}
+a{
+    text-decoration: none;
+}
+header{
+    height: 100vh; /*view height*/
+}
+.bg-img{
+    background-size: cover;/*等比例填滿*/
+    background-position: center center;/*讀取照片正中間，x水平、y垂直*/
+    background-repeat: none;
+}
+header div{
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 100vh;
+    padding: 20vh 2rem 0; /*上右下*/
+    line-height: 2;
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+}
+h1{
+    font-size:3rem;
+    color: #242F40;
+    font-weight:700;
+    text-shadow: 3px 3px 5px #4B4E6D; /*水平位移 垂直位移 模糊程度 陰影顏色*/ /*位置左上為負數，右下為正數*/
+}
+header span{
+    font-size: 1.5rem;
+    color: #4B4E6D;
+    text-shadow: 2px 2px 0 #d8e2dc;
+}
+main article:first-of-type{
+    background-color:#d8e2dc;
+    line-height:2;
+    font-size: 1.5rem;
+}
+main article:first-of-type h2{
+    font-size: 2.3rem;
+    color:#3D5A80;
+}
+/* 商品 */
+.d-table-cell .bg-img.ps-a{
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:100%;
+}
+.d-table-cell{
+    padding:24vh 8%;
+    line-height: 2;
+    overflow:hidden; /*有溢出去的範圍會藏起來*/
+}
+.mask{
+    top:20px;
+    right:20px;
+    bottom:20px;
+    left:20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-top-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+}
+.mask~*{
+    position: relative;
+    text-align: center;
+}
+.d-table-cell h3{
+    font-size: 3rem;
+    color:#4C5C68 ;
+}
+.d-table-cell p{
+    font-size: 1.3rem;
+}
+.btn{
+    font-size: 0.9rem;
+    min-width: 120px;
+    color:black;
+    text-transform: uppercase; /*字變大寫*/
+    font-weight: 900;
+    letter-spacing: 2px;
+    display: inline-block;
+}
+.btn-s{
+    border: 2px solid black;
+    box-shadow: 0 0 0 3px lightgray; /*水平、垂直、模糊程度、擴展、陰影顏色*/
+}
+footer{
+    background-color: #d8e2dc;
+    letter-spacing: 2px;
+}
+footer br{
+    display: none;
+}
+.d-table-cell:hover .mask{
+    transform: scale(0.8) rotateY(180deg); /* 變形、縮放、旋轉*/
+    background-color:rgba(255, 255, 255, 0.5);
+    border-top-right-radius: 100px;
+    border-bottom-left-radius: 100px;
+}
+.d-table-cell, .d-table-cell *{ /* 表示d-table-cell及其裡面元素都會改變*/
+    transition:0.5s; /* 捕間動畫、變形過程*/
+}
+.d-table-cell:hover *:not(.mask){
+    transform: scale(1.1);
+}
+.btn:hover{
+    border: 3px solid #cdb4db;
+    transition: border-top 0.35s linear 0.1s,
+                border-right 0.35s linear 0.45s,
+                border-bottom 0.35s linear 0.8s,
+                border-left 0.35s linear 1.15s;
+}
+/* banner 動畫 */
+.move{
+    position: relative;
+    overflow: hidden;
+}
+.move::before, .move::after{
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    bottom: -50%;
+    left: -50%;
+    z-index: 1;
+    background: transparent repeat;
+    opacity: 0.3;
+    /* 動畫 */
+    animation-name: move;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: 6s;
+}
+.move.pic::before, .move.pic::after{
+    background-image: url(../images/move.png);
+}
+@keyframes move{
+    from{background-position:0 0 ;}
+    to{background-position: 0 1024px;}
+}
+.move::after{
+    opacity: 0.7;
+    animation-name: move2;
+}
+@keyframes move2{
+    from{background-position:50px 2048px;}
+    to{background-position: 0 1024px;}
+}
+/*手機*/
+@media (max-width:767px){
+    header div.w-50{
+        width: 100%;
+        clip-path: none;
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+    header div span{
+        font-size: 1.5rem;
+    }
+    header h1{
+        font-size: 4rem;
+        line-height: 1.5;
+    }
+    main h2{
+        line-height: 1.5;
+        text-align: justify;
+    }
+    main article:first-of-type h2 {
+        font-size: 2rem;
+    }
+    main h2 + P{
+        text-align: justify; /*左右對齊*/
+        margin-top: 1.5rem;
+        line-height: 1.5;
+    }
+    main article.p-lr-2{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .d-table-cell{
+        display: block;
+        padding: 10% 2%;
+    }
+    .mask{
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: 20%;
+    }
+    .d-table-cell:hover .mask{
+        transform: scale(1) rotateY(180deg); /* 變形、縮放、旋轉*/
+        background-color:rgba(255, 255, 255, 0.5);
+        border-radius: 20%;
+    }
+    .d-table-cell:hover *:not(.mask){
+        transform: scale(1.05);
+    }
+    .d-table-cell h3 {
+        font-size: 2.5rem;
+        color: #4C5C68;
+    }
+    .d-table-cell h3 + p {
+        font-size: 1.2rem;
+        text-align: justify;
+    }
+    footer br{
+        display: block;
+    }
+    footer span{
+        display: none;
+    }
+    footer{
+        line-height: 1.5;
+    }
+    /*max 767-------------*/
+}
+/*平板*/
+@media (width:768px){
+    header div{
+        clip-path:none;
+    }
+    main h2 + p{
+        font-size: 1.6rem;
+        text-align: justify;
+    }
+    main h2{
+        white-space: nowrap; /*字不換行*/
+    }
+    .d-table-cell {
+        padding: 10vh 5%;
+        line-height: 2;
+        overflow: hidden;
+    }
+    .mask {
+        top: 10px;
+        right: 20px;
+        bottom: 10px;
+        left: 20px;
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+    .d-table-cell h3 {
+        font-size: 2.5rem;
+    }
+    .d-table-cell:hover .mask{
+        transform: scale(1) rotateY(180deg); /* 變形、縮放、旋轉*/
+        background-color:rgba(255, 255, 255, 0.5);
+    }
+    .d-table-cell h3 + p {
+        font-size: 1.5rem;
+        text-align: justify;
+    }
+    /*768----------------*/
+}
